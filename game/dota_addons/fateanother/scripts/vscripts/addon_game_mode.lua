@@ -233,10 +233,54 @@ function FateGameMode:OnHeroInGame(hero)
     local heroName = FindName(hero:GetName())
     hero.name = heroName
     GameRules:SendCustomMessage("Servant <font color='#58ACFA'>" .. heroName .. "</font> has been summoned. Please wait until the battle begins.", 0, 0)
-    --[[UTIL_MessageText(hero:GetPlayerID()+1,"IMPORTANT : You can provide your hero with item support, customize your hero and cast powerful Command Seal as a Master, located on the right bottom of the map. ",255,255,255,255)
-    Timers:CreateTimer(30.0, function() 
-      UTIL_ResetMessageText(hero:GetPlayerID()+1)
-    end)  ]]
+
+  Timers:CreateTimer( 0.1, function()
+      -- Setup variables
+      --local hero = EntIndexToHScript( keys.entindex )
+      local model_name = ""
+      
+      -- Check if npc is hero
+      if IsValidEntity(hero) then
+        if hero:GetName() == "npc_dota_hero_vengefulspirit" or hero:GetName() == "npc_dota_hero_chen" or hero:GetName() == "npc_dota_hero_huskar" then return end
+
+        if not hero:IsHero() then return end
+        else return 
+      end
+
+      -- Getting model name
+      if model_lookup[ hero:GetName() ] ~= nil and hero:GetModelName() ~= model_lookup[ hero:GetName() ] then
+        model_name = model_lookup[ hero:GetName() ]
+        -- print( "Swapping in: " .. model_name )
+      else
+        return nil
+      end
+      
+      -- Check if it's correct format
+      if hero:GetModelName() ~= "models/development/invisiblebox.vmdl" then return nil end
+      
+      -- Never got changed before
+      local toRemove = {}
+      local wearable = hero:FirstMoveChild()
+      while wearable ~= nil do
+        if wearable:GetClassname() == "dota_item_wearable" then
+          -- print( "Removing wearable: " .. wearable:GetModelName() )
+          table.insert( toRemove, wearable )
+        end
+        wearable = wearable:NextMovePeer()
+      end
+      
+      -- Remove wearables
+      for k, v in pairs( toRemove ) do
+        v:SetModel( "models/development/invisiblebox.vmdl" )
+        v:RemoveSelf()
+      end
+      
+      -- Set model
+      hero:SetModel( model_name )
+      hero:SetOriginalModel( model_name )     -- This is needed because when state changes, model will revert back
+      hero:MoveToPosition( hero:GetAbsOrigin() )  -- This is needed because when model is spawned, it will be in T-pose
+    end
+  )
 end
 
 --[[

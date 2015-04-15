@@ -452,23 +452,27 @@ function OnAOTKStart(keys)
 		caster.AOTKSoldierCount = caster.AOTKSoldierCount + 1
 		aotkAbilityHandle:ApplyDataDrivenModifier(keys.caster, soldier, "modifier_army_of_the_king_infantry_bonus_stat",{})
 	end
-	-- Second row
-	for i=0,4 do
-		local soldier = CreateUnitByName("iskander_archer", marbleCenter + Vector(800, 600 - i*100, 0), true, nil, nil, caster:GetTeamNumber())
-		soldier:AddNewModifier(caster, nil, "modifier_phased", {})
-		soldier:SetOwner(caster)
-		table.insert(caster.AOTKSoldiers, soldier)
-		caster.AOTKSoldierCount = caster.AOTKSoldierCount + 1
-		aotkAbilityHandle:ApplyDataDrivenModifier(keys.caster, soldier, "modifier_army_of_the_king_archer_bonus_stat",{})
-	end
-	for i=0,4 do
-		local soldier = CreateUnitByName("iskander_archer", marbleCenter + Vector(800, -600 + i*100, 0), true, nil, nil, caster:GetTeamNumber())
-		soldier:AddNewModifier(caster, nil, "modifier_phased", {})
-		soldier:SetOwner(caster)
-		table.insert(caster.AOTKSoldiers, soldier)
-		caster.AOTKSoldierCount = caster.AOTKSoldierCount + 1
-		aotkAbilityHandle:ApplyDataDrivenModifier(keys.caster, soldier, "modifier_army_of_the_king_archer_bonus_stat",{})
-	end
+	Timers:CreateTimer(0.5, function()
+		if caster:IsAlive() then
+			-- Second row
+			for i=0,4 do
+				local soldier = CreateUnitByName("iskander_archer", marbleCenter + Vector(800, 600 - i*100, 0), true, nil, nil, caster:GetTeamNumber())
+				soldier:AddNewModifier(caster, nil, "modifier_phased", {})
+				soldier:SetOwner(caster)
+				table.insert(caster.AOTKSoldiers, soldier)
+				caster.AOTKSoldierCount = caster.AOTKSoldierCount + 1
+				aotkAbilityHandle:ApplyDataDrivenModifier(keys.caster, soldier, "modifier_army_of_the_king_archer_bonus_stat",{})
+			end
+			for i=0,4 do
+				local soldier = CreateUnitByName("iskander_archer", marbleCenter + Vector(800, -600 + i*100, 0), true, nil, nil, caster:GetTeamNumber())
+				soldier:AddNewModifier(caster, nil, "modifier_phased", {})
+				soldier:SetOwner(caster)
+				table.insert(caster.AOTKSoldiers, soldier)
+				caster.AOTKSoldierCount = caster.AOTKSoldierCount + 1
+				aotkAbilityHandle:ApplyDataDrivenModifier(keys.caster, soldier, "modifier_army_of_the_king_archer_bonus_stat",{})
+			end
+		end
+	end)
 	local maharaja = CreateUnitByName("iskander_maharaja", maharajaPos, true, nil, nil, caster:GetTeamNumber())
 	maharaja:SetControllableByPlayer(caster:GetPlayerID(), true)
 	maharaja:SetOwner(caster)
@@ -743,7 +747,7 @@ function OnHammerStart(keys)
 		Timers:CreateTimer("hammer_charge" .. i, {
 			endTime = 0.0,
 			callback = function()
-
+			if not IsValidEntity(cavalryTable[i]) then return end
 			local targets = FindUnitsInRadius(cavalryTable[i]:GetTeam(), cavalryTable[i]:GetAbsOrigin(), nil, 100, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 	        for k,v in pairs(targets) do
 				if v.HammerChargeHit ~= true then 
