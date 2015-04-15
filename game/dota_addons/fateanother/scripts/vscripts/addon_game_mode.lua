@@ -476,51 +476,8 @@ end
 -- This is for swapping hero models in
 function FateGameMode:OnHeroSpawned( keys )
 	-- This is needed because model is somehow not yet rendered while this is called, so we need a little bit of delay
-	Timers:CreateTimer( 0.05, function()
-			-- Setup variables
-			local hero = EntIndexToHScript( keys.entindex )
-			local model_name = ""
-			
-			-- Check if npc is hero
-      if IsValidEntity(hero) then
-			 if not hero:IsHero() then return end
-      else return 
-      end
-			
-			-- Getting model name
-			if model_lookup[ hero:GetName() ] ~= nil and hero:GetModelName() ~= model_lookup[ hero:GetName() ] then
-				model_name = model_lookup[ hero:GetName() ]
-				-- print( "Swapping in: " .. model_name )
-			else
-				return nil
-			end
-			
-			-- Check if it's correct format
-			if hero:GetModelName() ~= "models/development/invisiblebox.vmdl" then return nil end
-			
-			-- Never got changed before
-			local toRemove = {}
-			local wearable = hero:FirstMoveChild()
-			while wearable ~= nil do
-				if wearable:GetClassname() == "dota_item_wearable" then
-					-- print( "Removing wearable: " .. wearable:GetModelName() )
-					table.insert( toRemove, wearable )
-				end
-				wearable = wearable:NextMovePeer()
-			end
-			
-			-- Remove wearables
-			for k, v in pairs( toRemove ) do
-				v:SetModel( "models/development/invisiblebox.vmdl" )
-				v:RemoveSelf()
-			end
-			
-			-- Set model
-			hero:SetModel( model_name )
-			hero:SetOriginalModel( model_name )			-- This is needed because when state changes, model will revert back
-			hero:MoveToPosition( hero:GetAbsOrigin() )	-- This is needed because when model is spawned, it will be in T-pose
-		end
-	)
+  print("[FateGameMode]" .. "Hero Spawned")
+
 end
 
 -- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive

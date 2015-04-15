@@ -1523,11 +1523,11 @@
 			"model"					"models/caster/caster.vmdl"
 			"model"					"models/gilgamesh/gilgamesh.vmdl"
 			"model"					"models/lancelot/lancelot.vmdl"
-			"model"					"models/avenger/trueform/trueform.vmdl"
-			"model"					"models/avenger/avenger.vmdl"
-			"model"					"models/diarmuid/diarmuid.vmdl"
-			"model"					"models/iskander/iskander.vmdl"
-			"model"					"models/iskander/iskander_chariot.vmdl"
+			//"model"					"models/avenger/trueform/trueform.vmdl"
+			//"model"					"models/avenger/avenger.vmdl"
+			//"model"					"models/diarmuid/diarmuid.vmdl"
+			//"model"					"models/iskander/iskander.vmdl"
+			//"model"					"models/iskander/iskander_chariot.vmdl"
 
 			//AOTK Infantry
 			"model"					"models/heroes/dragon_knight/dragon_knight.vmdl"

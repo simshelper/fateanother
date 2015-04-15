@@ -12509,7 +12509,7 @@
 		"AbilityManaCost"				"400"
 		"precache"
 		{
-			"model"		"models/avenger/trueform/trueform.vmdl"
+			//"model"		"models/avenger/trueform/trueform.vmdl"
 			"particle"	"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
 			"particle"	"particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_transform.vpcf"
 		}
@@ -14184,7 +14184,7 @@
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
 		"precache"
 		{
-			"model"				"models/iskander/iskander_chariot.vmdl"
+			//"model"				"models/iskander/iskander_chariot.vmdl"
 			"particle"			"particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf"
 			"particle"			"particles/items_fx/aegis_respawn.vpcf"
 			"particle"			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start.vpcf"

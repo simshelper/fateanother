@@ -606,7 +606,7 @@
 	"npc_dota_hero_avenger"
 	{
 		"override_hero"			"npc_dota_hero_vengefulspirit"
-		"Model"					"models/development/invisiblebox.vmdl"
+		//"Model"					"models/development/invisiblebox.vmdl"
 		"ModelScale"			"0.80"
 				
 		"AbilityLayout"			"6"
@@ -662,7 +662,7 @@
 	"npc_dota_hero_diarmuid"
 	{
 		"override_hero"			"npc_dota_hero_huskar"
-		"Model"					"models/development/invisiblebox.vmdl"
+		//"Model"					"models/development/invisiblebox.vmdl"
 		"ModelScale"			"1.10"
 
 		"AbilityLayout"			"6"
@@ -759,7 +759,7 @@
 	"npc_dota_hero_iskander"
 	{
 		"override_hero"			"npc_dota_hero_chen"
-		"Model"					"models/development/invisiblebox.vmdl"
+		//"Model"					"models/development/invisiblebox.vmdl"
 		"ModelScale"			"1.00"
 
 		"AbilityLayout"			"6"

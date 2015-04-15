@@ -280,8 +280,8 @@ function OnTFStart(keys)
     	caster:SwapAbilities("avenger_tawrich_zarich", "avenger_vengeance_mark", true, true) 
    	end
     caster:SwapAbilities("avenger_true_form", "avenger_demon_core", true, true)
-    caster:SetOriginalModel("models/avenger/trueform/trueform.vmdl")
-    caster:SetModelScale(1.1)
+    --caster:SetOriginalModel("models/avenger/trueform/trueform.vmdl")
+    --caster:SetModelScale(1.1)
 end
 
 function OnTFLevelUp(keys)
@@ -303,10 +303,10 @@ function OnTFEnd(keys)
     if demoncore:GetToggleState() then
     	demoncore:ToggleAbility()
     end
-    caster:SetModel("models/avenger/avenger.vmdl")
-    caster:SetOriginalModel("models/avenger/avenger.vmdl")
+    --caster:SetModel("models/avenger/avenger.vmdl")
+    --caster:SetOriginalModel("models/avenger/avenger.vmdl")
 
-    caster:SetModelScale(0.8)
+    --caster:SetModelScale(0.8)
 end
 
 function OnDCToggleOn(keys)
